@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Employee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .navbar {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 8px 8px 0 0;
+            color: white;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 10px;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+        }
+
+        h3 {
+            color: #3498db;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 20px;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <a href="{% url 'add_employee' %}">Add Employee</a>
+            <a href="{% url 'list_employee' %}">Add Attendance</a>
+            <!-- Add more links as needed -->
+        </div>
+
+        <h3>Employee List</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Sl.no</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Hiring date</th>
+                    <th>Employee code</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in items %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ employee.first_name }}</td>
+                    <td>{{employee.last_name}}</td>
+                    <td>{{employee.hire_date}}</td>
+                    <td>{{employee.employee_code}}</td>
+                    <td><a href="{% url 'update_employee' pk=employee.pk %}">Update</a></td>
+                    <td><a href="{% url 'delete_employee' pk=employee.pk %}">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Delete Employee</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+            }
+    
+            .container {
+                max-width: 400px;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }
+    
+            h3 {
+                color: #3498db;
+                text-align: center;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+            }
+    
+            p {
+                color: #555;
+                margin-bottom: 20px;
+            }
+    
+            form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+    
+            button {
+                background-color: #dc3545;
+                color: #fff;
+                padding: 10px 15px;
+                border: none;
+                cursor: pointer;
+                border-radius: 5px;
+                margin-top: 15px;
+            }
+    
+            button:hover {
+                background-color: #c82333;
+            }
+    
+            a {
+                display: block;
+                margin-top: 20px;
+                color: #007bff;
+                text-decoration: none;
+            }
+    
+            a:hover {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+<body>
+    <div class="container">
+    <h3>Update Employee</h3>
+    <form method="post" action="{% url 'update_employee' pk=item.pk %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update</button>
+    </form>
+    <a href="{% url 'list_employee' %}">Back to Employee List</a>
+
+</div>
+</body>
+</html>
