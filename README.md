@@ -1,4 +1,4 @@
-# TRAVHEX
+# ATTENDANCE_PROJECT
 
 ### 1. Requirments
 - Install the following   
