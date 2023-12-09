@@ -26,3 +26,4 @@ python3 -m venv attendance_env
 
 
 - Create corresponding database using mysql. 
+

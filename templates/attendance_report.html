@@ -1,9 +1,8 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List Employee</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -84,53 +83,43 @@
             background-color: #e0e0e0;
         }
     </style>
+    <title>Attendance Report</title>
 </head>
 <body>
     <div class="container">
         <div class="navbar">
-
             <a href="{% url 'add_employee' %}">Add Employee</a>
-            {%if items%} 
-            <a href="{% url 'add_attendance' %}">Add Attendance</a>
-            {% endif %}
+            <a href="{% url 'list_employee' %}">Back</a>
             <!-- Add more links as needed -->
         </div>
-        {%if items%} 
-        <h3>Employee List</h3>
+    <h3>Employee Attendance Report</h3>
+    <p>Report for Employee ID: {{ employee_id }}</p>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Sl.no</th>
-                    <th>First name</th>
-                    <th>Last name</th>
-                    <th>Hire date</th>
-                    <th>Employee code</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for employee in items %}
-                <tr>
-                    <td>{{ forloop.counter }}</td>
-                    <td>{{ employee.first_name }}</td>
-                    <td>{{employee.last_name}}</td>
-                    <td>{{employee.hire_date}}</td>
-                    <td>{{employee.employee_code}}</td>
-                    <td><a href="{% url 'update_employee' pk=employee.pk %}">Update</a></td>
-                    <td><a href="{% url 'delete_employee' pk=employee.pk %}">Delete</a></td>
-                    <td><a href="{% url 'details_employee' pk=employee.pk %}">Details</a></td>
-                    <td><a href="{% url 'attendance_report' employee_id=employee.pk %}">Report</a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% else %}
-   <p> No Data Found..</p>
-   {% endif %}
-    </div>
+    <div id="attendance-details"></div>
+    
+</div>
+    <script>
+        $(document).ready(function() {
+            // Function to fetch and update attendance details
+            function updateAttendanceDetails() {
+                // Make an AJAX request to the server to get updated attendance details
+                $.ajax({
+                    url: '/ajax/get_attendance_details/',  // Update the URL to match your Django URL configuration
+                    data: {'employee_id': {{ employee_id }}},
+                    type: 'get',
+                    dataType: 'html',
+                    success: function(data) {
+                        // Update the content of the attendance-details container
+                        $('#attendance-details').html(data);
+                    }
+                });
+            }
+
+            // Call the updateAttendanceDetails function every 5 seconds (adjust as needed)
+            setInterval(updateAttendanceDetails, 400);
+        });
+    </script>
+    <!-- Display the calculated attendance details here -->
+    <!-- You may use JavaScript to periodically update the content -->
 </body>
 </html>
