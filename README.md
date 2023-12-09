@@ -24,6 +24,19 @@ python3 -m venv attendance_env
 - Create `.env` file inside the root project folder(where manage.py file exist).  
 
 
+### 4. Configure database
 
 - Create corresponding database using mysql. 
 
+-Add database credentials and details in `.env`:
+
+
+
+### 5. Configure celery
+
+-Please install `redis`  and related configuration in your operating system.
+
+```
+celery -A attendance_app worker -l info
+
+```
