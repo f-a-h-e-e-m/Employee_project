@@ -2,9 +2,9 @@
 
 ### 1. Requirments
 - Install the following   
-1.python: 3.8  
+1.python: 3.11.0  
 2.mysql: 8.0.33  
-3.django: 4.2  
+3.django: 5.0
   
 ### 2. Clone project from Gitlab
 - Copy the clone URL from Gitlab and paste it on the terminal of the working project directory.
