@@ -1,0 +1,68 @@
+<!-- attendance_report.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Report</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        /* Your existing styles remain unchanged */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <a href="{% url 'add_employee' %}">Add Employee</a>
+            <a href="{% url 'list_employee' %}">Back</a>
+            <!-- Add more links as needed -->
+        </div>
+        <h3>Employee Attendance Report</h3>
+        <p>Report for Employee ID: {{ employee_id }}</p>
+
+        <!-- Table to display attendance details -->
+        <table id="attendance-table">
+            <thead>
+                <tr>
+                    <th>Punch Time</th>
+                    <th>Check In</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table rows will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Function to fetch and update attendance details
+            function updateAttendanceDetails() {
+                // Make an AJAX request to the server to get updated attendance details
+                $.ajax({
+                    url: '/ajax/get_attendance_details/',  // Update the URL to match your Django URL configuration
+                    data: {'employee_id': {{ employee_id }}},
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(data) {
+                        // Update the content of the attendance-details container
+                        $('#attendance-table tbody').empty();  // Clear existing rows
+                        $.each(data.attendance_list, function(index, attendance) {
+                            // Append a new row for each attendance record
+                            $('#attendance-table tbody').append(`
+                                <tr>
+                                    <td>${attendance.punch_time}</td>
+                                    <td>${attendance.check_in ? 'Yes' : 'No'}</td>
+                                </tr>
+                            `);
+                        });
+                    }
+                });
+            }
+
+            // Call the updateAttendanceDetails function every 5 seconds (adjust as needed)
+            setInterval(updateAttendanceDetails, 5000);
+        });
+    </script>
+</body>
+</html>
