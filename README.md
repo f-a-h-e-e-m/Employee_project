@@ -6,7 +6,7 @@
 2.mysql: 8.0.33  
 3.django: 5.0
   
-### 2. Clone project from Gitlab
+### 2. Clone project from Gitlabs
 - Copy the clone URL from Gitlab and paste it on the terminal of the working project directory.
 ```
 git clone git@gitlab.com:amfaheem/attendance_project.git
