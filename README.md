@@ -28,9 +28,18 @@ python3 -m venv attendance_env
 
 - Create corresponding database using mysql. 
 
-- Add database credentials and details in `.env`:
+- Add database credentials and details in `.env` and use below mentioned data as env file(only mentioned for testing purpose):
 
+```
+SECRET_KEY=(q%$_z2+ly$a@**v+ag8c^5norajn&-54@cv_xr_%kq((f!l*f
 
+DATABASE_NAME='Attendance_db'
+DATABASE_USER='remote_score_user'
+DATABASE_PASSWORD='RRoot@123#'
+DATABASE_PORT='3306'
+DATABASE_HOST='13.232.41.167'
+
+```
 
 ### 5. Configure celery
 
