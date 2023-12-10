@@ -9,7 +9,7 @@
 ### 2. Clone project from Gitlabs
 - Copy the clone URL from Gitlab and paste it on the terminal of the working project directory.
 ```
-git clone git@gitlab.com:amfaheem/attendance_project.git
+git clone git@github.com:f-a-h-e-e-m/Employee_project.git
 ```
 ### 3. Configure project
 - Create a virtual environment for the project.  
